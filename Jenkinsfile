@@ -1,14 +1,14 @@
 pipeline {
   agent any
   stages {
-    stage('build docker image') {
+    stage('unit test') {
       steps {
-        sh 'echo "build docker image"'
+        sh 'cd /root/.jenkins/workspace/cddemo_master && make test'
       }
     }
-    stage('push image') {
+    stage('build and push') {
       steps {
-        sh 'echo "push image to docker hub"'
+        sh 'cd /root/.jenkins/workspace/cddemo_master && make docker'
       }
     }
     stage('deploy app') {
